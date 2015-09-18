@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+   int c=0,r=0,n;
+   cout<<"no. of queen";
+   cin>>n;
+   int arr1[n],arr2[n],arr3[n];
+   while(r<n)
+   {
+      int l=0;
+      for(int j=0;j<r;j++)
+      {
+         if(c>n-1)
+         {
+             r=r-1;
+             c=arr3[r]+1;
+             continue;
+         }
+         if(arr1[j]==r+c||arr2[j]==r-c||arr3[j]==c)
+         {
+             l=1;
+             c=c+1;
+             if(c>n-1)
+             {
+                r=r-1;
+                c=arr3[r]+1;
+                continue;
+             }
+             break;
+         }
+      }
+      if(l==0)
+      {
+         arr1[r]=r+c;
+         arr2[r]=r-c;
+         arr3[r]=c;
+         r++;
+         c=0;
+      }
+   }
+   for(int k=0;k<n;k++)
+   {
+       cout<<"row: "<<k+1<<", colm: "<<arr3[k]+1<<endl;
+   }
+   return 0;
+}
